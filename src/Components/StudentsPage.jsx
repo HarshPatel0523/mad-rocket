@@ -73,7 +73,7 @@ const StudentsPage = () => {
                 phone: "", email: "", guardianName: "", dob: "", 
                 admissionDate: "", grade: "", extraNotes: "",
             });
-            window.location.reload();
+            setStudents((prevStudents) => [...prevStudents, newStudent]);
         }
     };
 
@@ -82,7 +82,11 @@ const StudentsPage = () => {
             await updateDoc(doc(db, "students", editStudent.id), editStudent);
             setModalOpen(false);
             setEditStudent(null);
-            // window.location.reload();
+            setStudents((prevStudents) => 
+                prevStudents.map((student) =>
+                    student.id === editStudent.id ? editStudent : student
+                )
+            );
         }
     };
 
@@ -98,7 +102,7 @@ const StudentsPage = () => {
 
     const handleDeleteStudent = async (id) => {
         await deleteDoc(doc(db, "students", id));
-        window.location.reload();
+        setStudents((prevStudents) => prevStudents.filter((student) => student.id !== id));
     };
 
     return (
