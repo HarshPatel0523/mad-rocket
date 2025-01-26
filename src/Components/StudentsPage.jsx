@@ -96,7 +96,7 @@ const StudentsPage = () => {
     };
 
     const handleEditClick = (student) => {
-        setEditStudent(student);
+        setEditStudent({...student});
         setModalOpen(true); 
     };
 
