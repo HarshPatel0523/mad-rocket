@@ -82,7 +82,7 @@ const StudentsPage = () => {
             await updateDoc(doc(db, "students", editStudent.id), editStudent);
             setModalOpen(false);
             setEditStudent(null);
-            window.location.reload();
+            // window.location.reload();
         }
     };
 
